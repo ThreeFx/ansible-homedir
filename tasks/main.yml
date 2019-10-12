@@ -1,0 +1,15 @@
+---
+- name: Figure out the user's home dir
+  getent:
+    database: passwd
+    key: "{{ homedir_user }}"
+    fail_key: true
+
+- name: Fail when no home directory found
+  fail:
+    msg: "No home directory found for user '{{ homedir_user }}'"
+  when: not getent_passwd[homedir_user][4]
+
+- name: Set requested variable
+  set_fact:
+    {"{{ homedir_result }}": "{{ getent_passwd[homedir_user][4] }}"}

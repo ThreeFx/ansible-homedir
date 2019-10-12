@@ -1,0 +1,24 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: instance
+    image: debian:10
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+
+scenario:
+  test_sequence:
+   - lint
+   - destroy
+   - syntax
+   - create
+   - converge
+   - idempotence
+   - destroy

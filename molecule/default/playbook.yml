@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: homedir
+
+  post_tasks:
+    - name: Verify that output is correct
+      assert:
+        that: "'{{ homedir_home_dir }}' == '/root'"

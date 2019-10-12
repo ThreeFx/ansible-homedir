@@ -1,0 +1,10 @@
+# Molecule managed
+
+{% if item.registry is defined %}
+FROM {{ item.registry.url }}/{{ item.image }}
+{% else %}
+FROM {{ item.image }}
+{% endif %}
+
+RUN if [ $(command -v apt-get) ]; then apt-get update && apt-get install -y python sudo bash ca-certificates iproute2 && apt-get clean; \
+    elif [ $(command -v pacman) ]; then pacman -Syu --noconfirm && pacman -S --noconfirm python sudo bash ca-certificates iproute2 && pacman -Scc --noconfirm; fi
