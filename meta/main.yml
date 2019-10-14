@@ -1,4 +1,6 @@
 ---
+allow_duplicates: true
+
 galaxy_info:
   author: Ben Fiedler
   description: Ansible module to fetch a users home directory
