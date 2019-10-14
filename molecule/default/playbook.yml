@@ -11,9 +11,8 @@
         homedir_user: test
         homedir_result: test_homedir
   post_tasks:
-    - name: Verify that output for root is correct
+    - name: Verify that the output is correct
       assert:
-        that: "'{{ root_homedir }}' == '/root'"
-    - name: Verify that output for test user is correct
-      assert:
-        that: "'{{ test_homedir }}' == '/home/test'"
+        that:
+          - "'{{ root_homedir }}' == '/root'"
+          - "'{{ test_homedir }}' == '/home/test'"
