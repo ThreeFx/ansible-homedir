@@ -3,8 +3,17 @@
   hosts: all
   roles:
     - role: homedir
-
+      vars:
+        homedir_user: root
+        homedir_result: root_homedir
+    - role: homedir
+      vars:
+        homedir_user: test
+        homedir_result: test_homedir
   post_tasks:
-    - name: Verify that output is correct
+    - name: Verify that output for root is correct
       assert:
-        that: "'{{ homedir_home_dir }}' == '/root'"
+        that: "'{{ root_homedir }}' == '/root'"
+    - name: Verify that output for test user is correct
+      assert:
+        that: "'{{ test_homedir }}' == '/home/test'"

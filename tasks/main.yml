@@ -1,4 +1,9 @@
 ---
+- name: Fail when homedir_user or homedir_result are unset
+  fail:
+    msg: You have to set homedir_user and homedir_result
+  when: (not homedir_user) or (not homedir_result)
+
 - name: Figure out the user's home dir
   getent:
     database: passwd

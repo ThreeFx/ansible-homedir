@@ -1,3 +1,0 @@
----
-homedir_user: "{{ ansible_user_id }}"
-homedir_result: "homedir_home_dir"
